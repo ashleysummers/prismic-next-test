@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import { client } from '../utils/prismicPosts'
+import Post from '../components/Post';
+
+export default function Home({posts}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,6 +16,15 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <div className="posts">
+  {posts !== undefined &&
+    posts.map((p) => {
+      let title = p.title[0].text
+      let key = `${p.date}+${title}`
+      return <Post key={key} date={p.date} image={p.image} title={title} />
+    })}
+</div>
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -62,4 +74,23 @@ export default function Home() {
       </footer>
     </div>
   )
+  
+}
+
+// at the bottom of your component file
+export async function getStaticProps() {
+  console.log("getStaticPRops");
+  // query() is empty on purpose!
+  // https://prismic.io/docs/rest-api/query-the-api/query-all-documents
+  const res = await client.query('')
+
+  const posts = res.results.map((p) => {
+    return p.data
+  })
+
+  return {
+    props: {
+      posts,
+    },
+  }
 }
