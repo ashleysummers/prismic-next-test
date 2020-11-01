@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.dropdown-toggle::after {
+  color: red;
+}

@@ -21,7 +21,7 @@ function GlobalMenu() {
                             <a className="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <a className="nav-link" href="#">Work</a>
                     </li>
                     <li className="nav-item">
