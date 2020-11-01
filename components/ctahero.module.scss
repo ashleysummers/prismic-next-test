@@ -1,0 +1,28 @@
+.ctaHero {
+    color: #283836;
+    height: 600px;
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+
+    //clip-path: polygon(17% 100%, 10% 96%, 6% 91%, 2% 83%, 1% 1%, 100% 1%, 100% 58%, 90% 73%, 78% 82%, 67% 88%, 60% 91%, 48% 94%, 37% 96%, 26% 100%);
+
+    .ctaContainer {
+        h2 {
+            font-weight: bold;
+            font-size: 42px;            
+        }
+        h3 {
+            font-size: 20px;
+        }
+        margin: 20px;
+        width: 50%;
+        padding: 20px;
+        border-radius: 8px;
+
+        a {
+            color: red;
+            font-weight: bold;            
+        }
+    }
+}
