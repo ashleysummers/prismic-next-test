@@ -19,48 +19,49 @@ export default function Home(props) {
   const document = props.lokion_home;
   console.log(document);
 
-  const pageContent = document.data.body.map( (slice,index) => {
-      if (slice.slice_type === 'hero_cta') {
-        return (
-          <CTAHero 
-            headline={slice.primary.headline[0].text} 
-            tagline={slice.primary.tagline[0].text}
-            ctaText={slice.primary.cta_text[0].text}
-            ctaLink={slice.primary.cta_link.url}
-            backgroundImage={slice.primary.background_image}
-            ctaBoxColor={slice.primary.cta_box_color}/>
-        )        
-      }
+  const pageContent = document.data.body.map((slice, index) => {
+    if (slice.slice_type === 'hero_cta') {
+      return (
+        <CTAHero
+          headline={slice.primary.headline[0].text}
+          tagline={slice.primary.tagline[0].text}
+          ctaText={slice.primary.cta_text[0].text}
+          ctaLink={slice.primary.cta_link.url}
+          backgroundImage={slice.primary.background_image}
+          ctaBoxColor={slice.primary.cta_box_color} />
+      )
+    }
 
-      if (slice.slice_type === 'hero_headline') {
-          return (
-            <HeroHeadline 
-              headline={slice.primary.headline[0].text} 
-              tagline={slice.primary.tagline[0].text}
-            />
-          )
-      }
+    if (slice.slice_type === 'hero_headline') {
+      return (
+        <HeroHeadline
+          headline={slice.primary.headline[0].text}
+          tagline={slice.primary.tagline[0].text}
+        />
+      )
+    }
 
-      if (slice.slice_type === 'work_cta') {
-        return (
-          <WorkCTA 
-            ctaText={slice.primary.cta_button_text[0].text}
-            ctaLink={slice.primary.cta_link.url}
-            clientName={slice.primary.client_name[0].text}
-            workDescription={slice.primary.work_description[0].text}
-            workSummary={slice.primary.work_summary[0].text}
-            clientImage={slice.primary.client_image}
-            imageAlignment={slice.primary.image_alignment}/>
-        )
-      }
+    if (slice.slice_type === 'work_cta') {
+      return (
+        <WorkCTA
+          ctaText={slice.primary.cta_button_text[0].text}
+          ctaLink={slice.primary.cta_link.url}
+          clientName={slice.primary.client_name[0].text}
+          workDescription={slice.primary.work_description[0].text}
+          workSummary={slice.primary.work_summary[0].text}
+          clientImage={slice.primary.client_image}
+          imageAlignment={slice.primary.image_alignment} />
+      )
+    }
   });
 
   return (
     <Layout>
       <Head>
-        <title>Index page</title>
+        <title>Lokion:: Home</title>
+        <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=lok-next"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
       </Head>
 
       {pageContent}
@@ -74,7 +75,7 @@ export default function Home(props) {
         ctaBoxColor={props.lokion_home.cta_box_color}/>
       */}
 
-{/*
+      {/*
       <img src={props.home.data.image.url} alt="avatar image" height="140px" />
       <h1>{RichText.asText(props.home.data.headline)}</h1>
       <p>{RichText.asText(props.home.data.description)}</p>
@@ -89,13 +90,13 @@ export default function Home(props) {
         ))}
       </ul>
         */}
-    </Layout>    
+    </Layout>
   )
-  
+
 }
 
 // at the bottom of your component file
-export async function getStaticProps() {  
+export async function getStaticProps() {
   // query() is empty on purpose!
   // https://prismic.io/docs/rest-api/query-the-api/query-all-documents
   // const res = await client.query('');
@@ -104,11 +105,11 @@ export async function getStaticProps() {
 
   const lokion_home = await client.getSingle("home_page");
   console.log(lokion_home.data);
-  
+
   const posts = await client.query(
     Prismic.Predicates.at('document.type', 'post'), {
-      orderings: '[my.post.date]'
-    }
+    orderings: '[my.post.date]'
+  }
   )
 
   return {
